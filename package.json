@@ -1,0 +1,75 @@
+{
+  "name": "mailforge-pro",
+  "version": "0.1.0",
+  "description": "Cross-platform desktop email client and consent-based campaign manager",
+  "main": "dist-electron/electron/main.js",
+  "author": "MailForge",
+  "license": "MIT",
+  "scripts": {
+    "dev": "concurrently -k \"vite --host 127.0.0.1\" \"wait-on http://127.0.0.1:5173 && npm run build:electron && electron .\"",
+    "build": "tsc -b && vite build",
+    "build:electron": "tsc -p electron/tsconfig.json",
+    "typecheck": "tsc --noEmit && tsc -p electron/tsconfig.json --noEmit",
+    "test": "vitest run",
+    "start": "electron .",
+    "package": "npm run build && npm run build:electron && electron-builder",
+    "package:mac": "npm run build && npm run build:electron && electron-builder --mac dmg",
+    "package:win": "npm run build && npm run build:electron && electron-builder --win nsis portable",
+    "package:win2012": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/package-windows-2012-r2.ps1"
+  },
+  "dependencies": {
+    "better-sqlite3": "^13.0.3",
+    "dayjs": "^1.11.13",
+    "imapflow": "^1.0.181",
+    "lucide-react": "^0.468.0",
+    "mailparser": "^3.7.2",
+    "nodemailer": "^10.3.1",
+    "papaparse": "^5.4.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "zod": "^4.6.7",
+    "zustand": "^5.0.3"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.12",
+    "@types/node": "^22.10.5",
+    "@types/nodemailer": "^6.4.17",
+    "@types/papaparse": "^5.3.15",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "concurrently": "^9.1.2",
+    "electron": "^45.2.2",
+    "electron-builder": "^26.18.0",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.7",
+    "vitest": "^5.1.0",
+    "wait-on": "^8.0.1"
+  },
+  "build": {
+    "appId": "com.mailforge.desktop",
+    "productName": "MailForge Pro",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "dist-electron/**/*",
+      "package.json"
+    ],
+    "asarUnpack": [
+      "**/better-sqlite3/**"
+    ],
+    "mac": {
+      "target": ["dmg"],
+      "category": "public.app-category.productivity"
+    },
+    "win": {
+      "target": ["nsis", "portable"]
+    },
+    "npmRebuild": true
+  }
+}

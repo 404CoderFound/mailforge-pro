@@ -1,0 +1,39 @@
+# Dependencies and generated builds
+node_modules/
+dist/
+dist-electron/
+release/
+coverage/
+*.tsbuildinfo
+*.dmg
+*.exe
+*.blockmap
+
+# Local application data
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+*.db
+*.db-*
+logs/
+*.log
+
+# Environment files, credentials, and signing material
+.env
+.env.*
+!.env.example
+.npmrc
+.yarnrc
+*.pem
+*.key
+*.p12
+*.pfx
+*.cer
+*.crt
+*.mobileprovision
+
+# Operating systems and editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

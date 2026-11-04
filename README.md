@@ -4,7 +4,7 @@ MailForge Pro is a local-first desktop email workspace built with Electron, Reac
 
 ## Requirements
 
-- Node.js 20 or newer
+- Node.js 22.12 or newer
 - npm
 - Xcode command line tools on macOS (native SQLite module build)
 - Visual Studio Build Tools on Windows (native SQLite module build)
@@ -43,11 +43,11 @@ macOS DMG files and Windows NSIS/portable packages are written to `release/`. Wi
 - **Consent:** imports without a recognizable opt-in/consent/subscribed field are unconsented by default. Campaign creation requires every selected contact to be explicitly opted in. Consent can be changed on the recipient page.
 - **Templates:** edit HTML and plain text, preview safely in a sandboxed frame, and substitute `{{name}}`, `{{first_name}}`, `{{last_name}}`, `{{email}}`, and imported custom fields.
 - **Campaigns:** schedule, start, pause, resume, and stop sends; see progress and delivery logs. Delivery is throttled to no more than 30 messages per minute and never exceeds an SMTP account's configured daily limit.
-- **Mailbox:** add IMAP accounts, browse folders, read text/HTML messages, delete messages, and compose with configured SMTP accounts.
+- **Mailbox:** add IMAP accounts, browse folders, read text/HTML messages, delete messages, download incoming attachments, and compose/reply/forward with configured SMTP accounts and local file attachments.
 - **Local data:** SQLite data is stored in Electron's user-data directory. Passwords are encrypted with Electron `safeStorage`; the app refuses to save credentials if OS secure storage is unavailable.
 
 ## Safety and privacy notes
 
 Campaigns are intended for contacts who explicitly consented to receive the messages. No campaign can be created with unconsented or missing recipients. Account rotation selects only enabled accounts that have remaining daily quota; it does not bypass server limits. Mailbox HTML is shown in a sandboxed frame, with scripts and same-origin access disabled. Open tracking is not enabled.
 
-This initial release does not yet include attachments, OAuth, advanced threading/search, bounce classification, or open/click analytics. IMAP/SMTP server settings and any provider-specific app passwords must be supplied by the user; no credentials are included in the application.
+This initial release does not yet include campaign attachments, OAuth, advanced threading/search, bounce classification, or open/click analytics. IMAP/SMTP server settings and any provider-specific app passwords must be supplied by the user; no credentials are included in the application.
